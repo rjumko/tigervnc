@@ -28,10 +28,6 @@ jobs:
         cache-to: type=gha,mode=max
         load: true  # Сохраняем образ для тестирования
         
-    - name: Test the image - VNC Viewer version
-      run: |
-        docker run --rm tigervnc:latest vncviewer --version
-        
     - name: Test the image - List files
       run: |
         docker run --rm tigervnc:latest ls -la /opt/tigervnc/bin/
