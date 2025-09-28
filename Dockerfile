@@ -55,7 +55,7 @@ RUN cmake -G "Unix Makefiles" \
 RUN make -j$(nproc) && make install
 
 # Финальный образ
-FROM ubuntu:latest AS builder
+FROM ubuntu:latest
 
 # Установка runtime зависимостей
 RUN apt-get update && apt-get install -y \
