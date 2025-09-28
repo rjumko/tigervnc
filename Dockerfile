@@ -11,11 +11,33 @@ RUN apt-get update && apt-get install -y \
     cmake \
     wget \
     ca-certificates \
+    # Основные зависимости TigerVNC
     zlib1g-dev \
     libpixman-1-dev \
     libfltk1.3-dev \
     libjpeg62-turbo-dev \
     libgnutls28-dev \
+    libnettle-dev \
+    libhogweed-dev \
+    # PAM библиотеки (исправляют ошибку)
+    libpam0g-dev \
+    # Дополнительные зависимости для полной сборки
+    libx11-dev \
+    libxext-dev \
+    libxfixes-dev \
+    libxrandr-dev \
+    libxcursor-dev \
+    libxdamage-dev \
+    libxinerama-dev \
+    libxtst-dev \
+    libxcomposite-dev \
+    libfontenc-dev \
+    libxkbfile-dev \
+    # Gettext для NLS
+    gettext \
+    libgettextpo-dev \
+    # Systemd (опционально)
+    libsystemd-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Клонирование и сборка TigerVNC
@@ -42,6 +64,18 @@ RUN apt-get update && apt-get install -y \
     libjpeg62-turbo \
     libpixman-1-0 \
     zlib1g \
+    libnettle8 \
+    libhogweed6 \
+    libpam0g \
+    libx11-6 \
+    libxext6 \
+    libxfixes3 \
+    libxrandr2 \
+    libxcursor1 \
+    libxdamage1 \
+    libxinerama1 \
+    libxtst6 \
+    libxcomposite1 \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
