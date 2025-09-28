@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y \
     libfltk1.3-dev \
     libjpeg62-turbo-dev \
     libgnutls28-dev \
-    libnettle-dev \
+    nettle-dev \
     libhogweed-dev \
     # PAM библиотеки (исправляют ошибку)
     libpam0g-dev \
@@ -39,7 +39,7 @@ RUN apt-get update && apt-get install -y \
     # Systemd (опционально)
     # libsystemd-dev \
     # && rm -rf /var/lib/apt/lists/*
-    
+
 # Клонирование и сборка TigerVNC
 WORKDIR /tmp
 RUN git clone https://github.com/TigerVNC/tigervnc.git \
