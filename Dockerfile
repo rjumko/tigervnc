@@ -61,7 +61,7 @@ FROM ubuntu:latest
 RUN apt-get update && apt-get install -y \
     libfltk1.3 \
     libgnutls30 \
-    libjpeg62-turbo \
+    libjpeg62 \
     libpixman-1-0 \
     zlib1g \
     libnettle8 \
