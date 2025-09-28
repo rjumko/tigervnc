@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     libpixman-1-dev \
     libfltk1.3-dev \
-    libjpeg62-turbo-dev \
+    libjpeg-turbo-dev\
     libgnutls28-dev \
     nettle-dev \
     # libhogweed-dev \
