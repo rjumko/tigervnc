@@ -35,11 +35,11 @@ RUN apt-get update && apt-get install -y \
     libxkbfile-dev \
     # Gettext для NLS
     gettext \
-    libgettextpo-dev \
+    libgettextpo-dev
     # Systemd (опционально)
     # libsystemd-dev \
     # && rm -rf /var/lib/apt/lists/*
-
+    
 # Клонирование и сборка TigerVNC
 WORKDIR /tmp
 RUN git clone https://github.com/TigerVNC/tigervnc.git \
