@@ -14,29 +14,43 @@ jobs:
     
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
-      
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v3
+      uses: actions/checkout@v5
+
+    - name: Log in to Docker Hub
+      uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+      with:
+        images: rjumko/tigervnc_pydoll  
+
+    # - name: Set up Docker Buildx
+    #   uses: docker/setup-buildx-action@v3
       
     - name: Build Docker image
+      id: push
       uses: docker/build-push-action@v5
       with:
         context: .
-        tags: tigervnc:latest
-        cache-from: type=gha
-        cache-to: type=gha,mode=max
-        load: true  # Сохраняем образ для тестирования
+        file: ./Dockerfile
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
+        # cache-from: type=gha
+        # cache-to: type=gha,mode=max
+        # load: true  # Сохраняем образ для тестирования
+
+    - name: Generate artifact attestation
+      uses: actions/attest-build-provenance@v3
+      with:
+        subject-name: index.docker.io/rjumko/tigervnc_pydoll
+        subject-digest: ${{ steps.push.outputs.digest }}
+        push-to-registry: true
         
     - name: Test the image - List files
       run: |
         docker run --rm tigervnc:latest ls -la /opt/tigervnc/bin/
         
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: docker-image-info
-        path: |
-          Dockerfile
-        retention-days: 30
