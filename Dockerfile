@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
     libjpeg62-turbo-dev \
     libgnutls28-dev \
     nettle-dev \
-    libhogweed-dev \
+    # libhogweed-dev \
     # PAM библиотеки (исправляют ошибку)
     libpam0g-dev \
     # Дополнительные зависимости для полной сборки
