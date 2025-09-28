@@ -1,5 +1,5 @@
 # Dockerfile для сборки TigerVNC Viewer
-FROM debian:bullseye-slim AS builder
+FROM ubuntu:latest AS builder
 
 # Установка переменных окружения
 ENV TIGERVNC_VERSION=1.13.1
@@ -55,7 +55,7 @@ RUN cmake -G "Unix Makefiles" \
 RUN make -j$(nproc) && make install
 
 # Финальный образ
-FROM debian:bullseye-slim
+FROM ubuntu:latest AS builder
 
 # Установка runtime зависимостей
 RUN apt-get update && apt-get install -y \
