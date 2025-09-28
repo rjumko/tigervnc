@@ -37,8 +37,8 @@ RUN apt-get update && apt-get install -y \
     gettext \
     libgettextpo-dev \
     # Systemd (опционально)
-    libsystemd-dev \
-    && rm -rf /var/lib/apt/lists/*
+    # libsystemd-dev \
+    # && rm -rf /var/lib/apt/lists/*
 
 # Клонирование и сборка TigerVNC
 WORKDIR /tmp
